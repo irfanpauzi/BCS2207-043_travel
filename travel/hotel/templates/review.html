@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         body {
+        background-color:aquamarine;
+    }
+    img{ border: solid 2px black;
+         width: 300px;
+    height: 200px;}
+    p {border: solid 2px black;
+    width: 300px;
+    height: 50px;}
+    </style>
+   
+</head>
+<body>
+    {% load static %}
+    <br><br>
+    <center><h1>HOTEL REVIEW</h1>
+    <br>
+    <img src="{% static "pic/image2.jpg" %}" alt="home" />
+    <img src="{% static "pic/image1.jpg" %}" alt="home" />
+    <br><br><br>
+    <form  action="review" method="post">
+        {% csrf_token %}
+            Name: <input name="name" type="text">
+            <br><br>
+            Text: <br>
+            <textarea name="text" id="" cols="30" rows="5"></textarea> 
+            <br><br>
+            <input type="submit" value="SAVE">
+    </form>
+    
+    <br><br>
+<h2>Reviews</h2>
+<br><br>
+{% for data in allreview %}
+    Review by: {{data.name}} <br>
+    <p>
+        {{data.text}}
+    </p>    
+    <br><br>
+{% endfor %}
+</center>
+</body>
+</html>
